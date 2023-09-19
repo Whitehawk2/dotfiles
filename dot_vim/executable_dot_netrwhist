@@ -1,0 +1,12 @@
+let g:netrw_dirhistmax  =10
+let g:netrw_dirhistcnt =1
+let g:netrw_dirhist_1='/home/alon/GIT/init.lua/plugin'
+let g:netrw_dirhist_0='/home/alon/GIT/init.lua'
+let g:netrw_dirhist_9='/home/alon/GIT/init.lua/after'
+let g:netrw_dirhist_8='/home/alon/GIT/init.lua/after/plugin'
+let g:netrw_dirhist_7='/home/alon/GIT/init.lua/after'
+let g:netrw_dirhist_6='/home/alon/GIT/init.lua'
+let g:netrw_dirhist_5='/home/alon/GIT/scripts'
+let g:netrw_dirhist_4='/home/alon/Clients/Bond(TG-17)/Git repos/app-ios-ud-subject/subjectud.xcodeproj/xcshareddata/xcschemes'
+let g:netrw_dirhist_3='/home/alon/Clients/Bond(TG-17)/Git repos/app-ios-ud-subject/subjectud.xcodeproj/xcshareddata'
+let g:netrw_dirhist_2='/home/alon/Clients/Bond(TG-17)/Git repos/dbt-core/scripts/singer.io'
