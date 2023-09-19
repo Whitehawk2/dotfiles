@@ -9,14 +9,16 @@ Added:
 
 1. vimrc
 2. zshrc
+3. tmux
+4. alacritty
 
 Planned:
 
 - Vim bundles?
 - nvim? (Although, that's just ayamir)
 - Sort and fix `zshrc`
-- tmux
-- alacritty
+  - Update alias proc for Apt? Rust?
+  - Install deps script? (i.e, Rust, Go, Alacritty, Tmux, Mcfly etc)
 
 Outside things that currently need manual install:
 
