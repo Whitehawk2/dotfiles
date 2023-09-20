@@ -31,3 +31,9 @@ of some of my dotfiles. let's see how that goes.
 
 currently, `vim` must be soft linked to `~/.config/vim/vimrc`.
 This is becasue of legacy use of `stow`
+
+TODO:
+
+1. test conf works on diff machine
+2. install zsh, oh-my-zsh, config git
+3. ...
