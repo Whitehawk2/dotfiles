@@ -6,10 +6,9 @@
 {{- $kube := promptBool . "kube" "Do you want to enable kubectl?" -}}
 {{- $vscode := promptBool . "vscode" "Do you want to enable vscode?" -}}
 {{- $vault := promptBool . "vault" "Do you want to enable vault?" -}}
-{{- if (and (eq .chezmoi.os "linux") (eq .chezmoi.osRelease.idLike "debian")) -}}
-{{- $nalapt := promptBool . "nalapt" "Do you want to enable nala frontend?" -}}
-{{- else -}}
 {{- $nalapt := false -}}
+{{- if (and (eq .chezmoi.os "linux") (eq .chezmoi.osRelease.idLike "debian")) -}}
+{{- $nalapt = promptBool . "nalapt" "Do you want to enable nala frontend?" -}}
 {{- end -}}
 
 [data]
