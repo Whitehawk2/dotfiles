@@ -1,14 +1,14 @@
 {{- $email := promptStringOnce . "email" "Email address" -}}
-{{- $minikube := promptBool  "minikube" "Are you using minikube?" -}}
-{{- $rss := promptBool  "rss" "Do you want to enable RSS?" -}}
-{{- $AWS := promptBool  "AWS" "Do you want to enable AWS?" -}}
-{{- $Terraform := promptBool  "Terraform" "Do you want to enable Terraform?" -}}
-{{- $kube := promptBool  "kube" "Do you want to enable kubectl?" -}}
-{{- $vscode := promptBool  "vscode" "Do you want to enable vscode?" -}}
-{{- $vault := promptBool  "vault" "Do you want to enable vault?" -}}
+{{- $minikube := promptBool  "minikube" -}}
+{{- $rss := promptBool  "rss" -}}
+{{- $AWS := promptBool  "AWS" -}}
+{{- $Terraform := promptBool  "Terraform" -}}
+{{- $kube := promptBool  "kube" -}}
+{{- $vscode := promptBool  "vscode" -}}
+{{- $vault := promptBool  "vault" -}}
 {{- $nalapt := false -}}
 {{- if (and (eq .chezmoi.os "linux") (eq .chezmoi.osRelease.idLike "debian")) -}}
-{{- $nalapt = promptBool  "nalapt" "Do you want to enable nala frontend?" -}}
+{{- $nalapt = promptBool  "nalapt" -}}
 {{- end -}}
 
 [data]
