@@ -33,9 +33,9 @@ cargo install trippy
 
 echo -e "\0033[0;25m>>>> Installing cargo-update <<<<\033[0m"]
 {{  if ne .chezmoi.username "root" -}}
-sudo apt install pkg-config libssl-dev
+sudo apt install -y pkg-config libssl-dev
 {{ else -}}
-apt install pkg-config libssl-dev
+apt install -y pkg-config libssl-dev
 {{- end }}
 cargo install cargo-update
 
