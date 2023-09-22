@@ -12,6 +12,7 @@ if ! $(command -v rustup); then
   apt install -y curl
 {{  end -}}
   curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh
+  source {{ .chezmoi.homeDir }}/.cargo/env
 {{ else if eq .chezmoi.osRelease.id "fedora" "suse" -}}
 {{  if ne .chezmoi.username "root" -}}
   sudo dnf install -y curl
@@ -19,6 +20,7 @@ if ! $(command -v rustup); then
   dnf install -y curl
 {{  end -}}
   curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh
+  source {{ .chezmoi.homeDir }}/.cargo/env
 {{ end -}}
 else
   echo "rust already installed"
