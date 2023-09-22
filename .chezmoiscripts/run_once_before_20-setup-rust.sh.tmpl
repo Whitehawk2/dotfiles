@@ -12,7 +12,7 @@ if ! $(command -v rustup); then
   apt install -y curl
 {{  end -}}
   curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh
-{{ else if eq .chezoi.osRelease.id "fedora" "suse" -}}
+{{ else if eq .chezmoi.osRelease.id "fedora" "suse" -}}
 {{  if ne .chezmoi.username "root" -}}
   sudo dnf install -y curl
 {{  else -}}
