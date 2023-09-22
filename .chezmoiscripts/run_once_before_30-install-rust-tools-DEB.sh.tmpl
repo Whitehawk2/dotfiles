@@ -4,15 +4,14 @@ set -eufo pipefail
 
 echo -e "\0033[0;32m>>>>> Begin Setting Up Rust tools! <<<<<\033[0m"
 
-if ! command -v cargo &> /dev/null
-then
-  echo "cargo could not be found! is rust installed?"
-  exit 1
+if ! command -v cargo &> /dev/null; then
+  echo "cargo could not be found! is rust installed? trying to source"
+  source {{ .chezmoi.homeDir }}/.cargo/env
+  if ! command -v cargo &> /dev/null; then
+    echo "cargo still not found, exiting"
+    exit 1
+  fi
 fi
-
-# making sure cargo is in path
-#source {{ .chezmoi.homeDir }}/.cargo/env
-source $HOME/.cargo/env
 
 echo -e "\0033[0;25m>>>> Installing Eza <<<<\033[0m"]
 cargo install eza
