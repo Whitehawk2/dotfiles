@@ -5,7 +5,7 @@ echo -e "\0033[0;32m>>>>> Begin Setting Up Rust <<<<<\033[0m"
 
 if ! $(command -v rustup); then
   echo "installing rust"
-{{ if eq .chezoi.osRelease.id "debian" "ubuntu" -}}
+{{ if eq .chezmoi.osRelease.id "debian" "ubuntu" -}}
 {{  if ne .chezmoi.username "root" -}}
   sudo apt install -y curl
 {{  else -}}
