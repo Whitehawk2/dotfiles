@@ -26,10 +26,7 @@ fi
 {{   end -}}
 
 # Set zsh as default shell
-if [ ! $SHELL = $(which zsh) ]; then
-  echo "Changing default shell to zsh"
-  chsh -s $(which zsh)
-fi
+chsh -s $(which zsh)
 
 echo -e "\0033[0;32m>>>>> Finish Setting Up ZSH Shell <<<<<\033[0m"
 {{ end -}}
