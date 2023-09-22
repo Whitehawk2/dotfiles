@@ -1,0 +1,17 @@
+{{ if .nalapt -}}
+#!/bin/bash
+set -eufo pipefail
+
+echo -e "\0033[0;32m>>>>> Begin Setting Up Nala <<<<<\033[0m"
+
+if ! $(command -v nala); then
+  echo "installing nala"
+{{  if ne .chezmoi.username "root" -}}
+  sudo apt install -y nala
+{{  else -}}
+  apt install -y nala
+{{  end -}}
+fi
+
+echo -e "\0033[0;32m>>>>> Finish Setting Up Nala <<<<<\033[0m"
+{{ end -}}
