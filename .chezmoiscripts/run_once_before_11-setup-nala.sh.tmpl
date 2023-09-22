@@ -8,8 +8,10 @@ if ! $(command -v nala); then
   echo "installing nala"
 {{  if ne .chezmoi.username "root" -}}
   sudo apt install -y nala
+  sudo nala update && sudo nale fetch
 {{  else -}}
   apt install -y nala
+  nala update && nale fetch
 {{  end -}}
 fi
 
