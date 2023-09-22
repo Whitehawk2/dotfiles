@@ -11,7 +11,8 @@ then
 fi
 
 # making sure cargo is in path
-source {{ .chezmoi.homeDir }}/.cargo/env
+#source {{ .chezmoi.homeDir }}/.cargo/env
+source $HOME/.cargo/env
 
 echo -e "\0033[0;25m>>>> Installing Eza <<<<\033[0m"]
 cargo install eza
