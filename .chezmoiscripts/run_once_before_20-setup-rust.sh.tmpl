@@ -7,7 +7,7 @@ if ! $(command -v rustup); then
   echo "installing rust"
 {{ if eq .chezmoi.osRelease.id "debian" "ubuntu" -}}
 {{  if ne .chezmoi.username "root" -}}
-  sudo apt install -y curl
+  sudo apt install -y curl build-essential
 {{  else -}}
   apt install -y curl
 {{  end -}}
@@ -15,8 +15,10 @@ if ! $(command -v rustup); then
 {{ else if eq .chezmoi.osRelease.id "fedora" "suse" -}}
 {{  if ne .chezmoi.username "root" -}}
   sudo dnf install -y curl
+  sudo dnf groupinstall -y "Development Tools" "C Development Tools and Libraries"
 {{  else -}}
   dnf install -y curl
+  dnf groupinstall -y "Development Tools" "C Development Tools and Libraries"
 {{  end -}}
   curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh
 {{ end -}}
