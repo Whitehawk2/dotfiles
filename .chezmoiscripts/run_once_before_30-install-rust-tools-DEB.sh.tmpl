@@ -32,6 +32,11 @@ echo -e "\0033[0;25m>>>> Installing trippy <<<<\033[0m"]
 cargo install trippy
 
 echo -e "\0033[0;25m>>>> Installing cargo-update <<<<\033[0m"]
+{{  if ne .chezmoi.username "root" -}}
+sudo apt install pkg-config libssl-dev
+{{ else -}}
+apt install pkg-config libssl-dev
+{{- end }}
 cargo install cargo-update
 
 echo -e "\0033[0;32m>>>>> Finish Setting Up Rust tools! <<<<<\033[0m"
