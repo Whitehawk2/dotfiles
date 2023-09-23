@@ -1,4 +1,4 @@
-{{ if (and ( .alacritty) ( eq .chezmoi.osRelease.id "debian" "ubuntu")  -}}
+{{ if (and ( .alacritty) ( eq .chezmoi.osRelease.id "debian" "ubuntu"))  -}}
 #!/bin/bash
 
 {{ if .old_deb -}}

@@ -18,14 +18,14 @@ packages=(
   libsqlite3-dev
   zoxide
   fd-find
-  yarn
   lldb
   python3-pip
+  yarnpkg
 )
 
 for package in ${packages[@]}; do
   if ! $(dpkg-query -W -f='installed' $package &> /dev/null); then
-    echo "installing $package"
+    echo -e "\0033[1;30m>> installing $package <<\033[0m"
 {{ if ne .chezmoi.username "root" -}}
     sudo apt install -y $package
 {{ else -}}
