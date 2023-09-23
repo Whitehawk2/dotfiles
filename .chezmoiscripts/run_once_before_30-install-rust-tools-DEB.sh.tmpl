@@ -28,8 +28,10 @@ cargo install gitui
 echo -e "\0033[0;25m>>>> Installing TealDeer (TLDR) <<<<\033[0m"]
 cargo install tealdeer
 
+{{ if .trippy -}}
 echo -e "\0033[0;25m>>>> Installing trippy <<<<\033[0m"]
 cargo install trippy
+{{- end }}
 
 echo -e "\0033[0;25m>>>> Installing cargo-update <<<<\033[0m"]
 {{  if ne .chezmoi.username "root" -}}
