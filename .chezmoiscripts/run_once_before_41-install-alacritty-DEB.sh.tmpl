@@ -4,6 +4,7 @@
 {{ if .old_deb -}}
 echo -e "\0033[6;31m>>>>> WARNING <<<<<\033[0m"
 echo -e "\0033[1;31m>>>>> Old deb version, skipping install (for now) <<<<<\033[0m"
+echo -e "\0033[6;31m>>>>> WARNING <<<<<\033[0m"
 # TODO: if ubuntu, add ppa. if debian, add deb
 {{ else if ne .chezmoi.username "root" -}}
 sudo apt install -y alacritty
