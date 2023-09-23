@@ -871,7 +871,7 @@ colors: *DoomOne
 #   - (Windows) powershell
 shell:
   # https://stackoverflow.com/a/70501766
-  program: /home/alon/scripts/tmux_chooser.sh
+  program: {{ .chezmoi.homeDir  }}/scripts/tmux_chooser.sh
   #program: /bin/zsh
   #args:
   #  - -l

@@ -1,0 +1,59 @@
+{{ if (and (eq .chezmoi.os "linux") (eq .chezmoi.osRelease.id "debian" "ubuntu")) -}}
+#!/bin/bash
+set -eufo pipefail
+
+echo -e "\0033[0;32m>>>>> Begin Setting Up APT and misc Packages <<<<<\033[0m"
+
+# List of packages to install
+packages=(
+  python3-venv
+  bat
+  fzf
+  ripgrep
+  alacritty
+  unzip
+  make
+  gcc
+  g++
+  clang
+  libsqlite3-dev
+  zoxide
+  fd-find
+  yarn
+  lldb
+  python3-pip
+
+)
+
+for package in ${packages[@]}; do
+  if ! $(dpkg-query -W -f='installed' $package &> /dev/null); then
+    echo "installing $package"
+{{ if ne .chezmoi.username "root" -}}
+    sudo apt install -y $package
+{{ else -}}
+    apt install -y ${packages[@]}
+{{ end -}}
+  fi
+done
+
+# TODO: remove this
+#if ! command -v cargo &> /dev/null; then
+#  echo "cargo could not be found! is rust installed? trying to source"
+#  source {{ .chezmoi.homeDir }}/.cargo/env && echo "sourced rust env!"
+#  if ! command -v cargo &> /dev/null; then
+#    echo "cargo still not found, exiting"
+#    exit 1
+#  fi
+#fi
+#
+#echo -e "\0033[0;32m>>>> Installing cargo-update <<<<\033[0m"
+#{{  if ne .chezmoi.username "root" -}}
+#sudo apt install -y pkg-config libssl-dev
+#{{ else -}}
+#apt install -y pkg-config libssl-dev
+#{{- end }}
+#cargo install cargo-update
+
+echo -e "\0033[0;32m>>>>> Finish Setting Packages <<<<<\033[0m"
+{{ end -}}
+
