@@ -9,9 +9,12 @@ if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]
 fi
 
 # for kubectl completion:
+{{ if .kube -}}
 source <(kubectl completion zsh)
+{{- end }}
+{{ if .minikube -}}
 source <(minikube completion zsh)
-
+{{- end }}
 
 # If you come from bash you might have to change your $PATH.
 # export PATH=$HOME/bin:/usr/local/bin:$PATH
@@ -134,7 +137,11 @@ alias K8S-YAML-LINTSERVER='docker run --name "yamlserver" --rm  -it quay.io/redh
 alias gitC='git commit -am "$(w3m whatthecommit.com | head -n 1)"'
 alias cat='batcat'
 alias P10K-UPDATE='git -C /home/alon/.oh-my-zsh/custom/themes/powerlevel10k pull'
+
+{{ if .trippy -}}
 alias tracert='trip'
+{{ end -}}
+
 alias Clock='while true; do date +%T | figlet | boxes -d columns  | lolcat && sleep 5 && clear; done'
 alias util='kubectl get nodes --no-headers | awk '\''{print $1}'\'' | xargs -I {} sh -c '\''echo {} ; kubectl describe node {} | grep Allocated -A 5 | grep -ve Event -ve Allocated -ve percent -ve -- ; echo '\'''
 #alias cat='smartcat' not identifying '*' or '-pp' well enough
@@ -150,7 +157,7 @@ if [ "$(command -v eza)" ]; then
     alias ll='eza -l --color always --icons -a -s type'
 fi
 # Dust
-if ["$(command -v dust)" ]; then
+if [ "$(command -v dust)" ]; then
     alias du='dust -r'
 fi
 
