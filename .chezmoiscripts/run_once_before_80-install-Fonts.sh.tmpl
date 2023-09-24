@@ -28,7 +28,10 @@ done
 
 # reset font cache
 if [ $updated_counter -gt 0 ]; then
-  echo "refreshing font cache"
+  pushd $font_dir > /dev/null
+  # kill all %20
+  for x in Meslo*; do mv -- "$x" "${x//%20/ }"; done
+  echo -e "\033[0;32m>>>>> Resetting Font Cache <<<<<\033[0m"
   fc-cache -vf "$font_dir"
 fi
 echo -e "\033[0;32m>>>>> Finish Setting Up Meslo NerdFont <<<<<\033[0m"
