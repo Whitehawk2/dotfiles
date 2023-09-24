@@ -15,13 +15,12 @@ for font in ${font_urls[@]}; do
   font_file=$(basename $font)
   font_name=$(echo $font_file | sed 's/%20NF%20/ /g')
   # Debug! remove from comments
-  #if $(fc-list | grep -i "$font_name" &> /dev/null); then
-  if $(return 1 &> /dev/null); then
+  #if $(fc-list | grep -i "$font_name" &> /return 1 &> /dev/null); then
     echo "$font_name is already installed"
   else
+    # TODO: The check fails (i.e when too many CD areguments for files with spaces)
     echo "installing $font_name"
-    mkdir -p $font_dir/$font_name
-    cd $font_dir/$font_name && curl -fLO $font -o "$font_file"
+    cd $font_dir && curl -fLO $font -o "$font_file"
     updated_counter=$((updated_counter + 1))
   fi
 done
