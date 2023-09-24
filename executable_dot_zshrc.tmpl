@@ -121,7 +121,9 @@ enable-fzf-tab
 
 # To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
 [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
-eval $(thefuck --alias)
+
+# on trial: not actually using this so much
+#eval $(thefuck --alias)
 
 # Exports
 export PATH="$HOME/.local/bin/:$HOME/go/bin/:/usr/local/lib:$PATH"
@@ -134,8 +136,14 @@ alias SRN='sudo reboot now'
 alias OMZ='cd ~/.oh-my-zsh/plugins'
 alias k8='kubectl'
 alias K8S-YAML-LINTSERVER='docker run --name "yamlserver" --rm  -it quay.io/redhat-developer/yaml-language-server:latest'
-alias gitC='git commit -am "$(w3m whatthecommit.com | head -n 1)"'
+#alias gitC='git commit -am "$(w3m whatthecommit.com | head -n 1)"'
+
+{{ if eq .chezmoi.osRelease.id "debian" "ubuntu" -}}
 alias cat='batcat'
+{{ else -}}
+alias cat='bat'
+{{ end -}}
+
 alias P10K-UPDATE='git -C /home/alon/.oh-my-zsh/custom/themes/powerlevel10k pull'
 
 {{ if .trippy -}}
@@ -144,7 +152,6 @@ alias tracert='trip'
 
 alias Clock='while true; do date +%T | figlet | boxes -d columns  | lolcat && sleep 5 && clear; done'
 alias util='kubectl get nodes --no-headers | awk '\''{print $1}'\'' | xargs -I {} sh -c '\''echo {} ; kubectl describe node {} | grep Allocated -A 5 | grep -ve Event -ve Allocated -ve percent -ve -- ; echo '\'''
-#alias cat='smartcat' not identifying '*' or '-pp' well enough
 
 # rustyness tests:
 # Eza/Exa
