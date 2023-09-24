@@ -21,7 +21,7 @@ for font in ${font_urls[@]}; do
     #echo "$font_name is already installed"
   #else
     # TODO: The check fails (i.e # TODO: The check fails (i.e when too many CD areguments for files with spaces"
-    cd $font_dir && curl -fLO $font -o \'"$font_file"\'
+    cd $font_dir && curl -fLO $font -o "$(echo $font_file" | sed 's/%20/ /g')"
     updated_counter=$((updated_counter + 1))
   #fi
 done
