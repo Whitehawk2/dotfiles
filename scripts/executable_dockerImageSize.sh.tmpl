@@ -1,0 +1,2 @@
+#!/bin/bash
+echo "$(docker image ls | awk 'NR > 1 { print $7 }' | awk -F '[GMk]' '{ print $1 }' | paste -sd+ | bc) MB"

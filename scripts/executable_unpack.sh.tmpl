@@ -1,0 +1,106 @@
+#!/usr/bin/env bash
+
+########################################################
+# Unpack - Identifies and extracts files automagically #
+#                                                      #
+# Ver 1.0; mostly working, some small issues with      #
+#          verbosity on failed extractions.            #
+#                                                      #
+#                                   2021 - Whitehawk2  #
+########################################################
+
+USAGE="usage: unpack [-r] [-v] file [file|dir...]"
+
+while getopts ":hrv" option; do
+    case "$option" in
+        r)  echo "Recursive mode: on" && _R=1
+            ;;
+        v)  echo "Verbose mode on" && _V=1
+            ;;
+        h)  echo "Extracts all implemented archive types in [FILE(S)|FOLDER(S)]"
+            echo "$USAGE"
+            exit 0
+            ;;
+        \?) echo "Illegal option."
+            echo "$USAGE"
+            exit 1
+            ;;
+    esac
+done
+
+# Get rid of the options that were processed
+shift $((OPTIND -1))
+
+[[ "$#" -lt 1 ]] && { echo "$USAGE"; exit 1; }
+
+extractedCounter=0
+skippedCounter=0
+
+
+# The actual extract function logic
+extract () {
+    target="$(readlink -f "$1")"
+    case "$(file "$1" | cut -d ":" -f2- | sed 's/^ *//g')" in
+        *bzip2*)
+            bunzip2 -dfk "$target"
+            [[ -n "$_V" ]] && echo "unpacking $1..."
+            ((extractedCounter++))
+            ;;
+        *gzip*)
+            gzip -dfk "$target"
+            [[ -n "$_V" ]] && echo "unpacking $1..."
+            ((extractedCounter++))
+            ;;
+        *[Zz]ip*)
+            unzip -oq "$target" -d "${target%/*}"
+            [[ -n "$_V" ]] && echo "unpacking $1..."
+            ((extractedCounter++))
+            ;;
+        *compress\'d*)
+            gzip -dfk "$target" --suffix=cmpr
+            [[ -n "$_V" ]] && echo "unpacking $1..."
+            ((extractedCounter++))
+            ;;
+        *)
+            [[ -n "$_V" ]] && echo "ignoring $1..."
+            ((skippedCounter++))
+            ;;
+
+    esac
+
+}
+
+# traversal function for recursiveness
+traverse () {
+    local dir check
+    for dir; do
+        for check in "$dir"/*; do
+            if [[ -d "$check" ]]; then
+                traverse "$check"
+            else
+                extract "$check"
+            fi
+        done
+    done
+}
+
+while (( "$#" )); do
+    if [[ -e "$1" ]]; then
+        if [[ -f "$1" ]]; then
+            extract "$1"
+        elif [[ -d "$1" && -n "$_R" ]]; then
+            traverse "$1"
+        else
+            for file in "$1"/*; do
+                extract "$file"
+            done
+        fi
+    else
+        echo "$1 is not a a file or dir..."
+        exit 1
+    fi
+    shift
+done
+
+echo "Decompressed $extractedCounter archive(s)"
+[[ "$skippedCounter" -gt 0 ]] && exit "$skippedCounter" || exit 0

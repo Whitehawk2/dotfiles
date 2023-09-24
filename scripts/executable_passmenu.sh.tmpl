@@ -1,0 +1,10 @@
+#!/usr/bin/env bash
+
+# requires pass, dmenu, xclip
+# works on X11
+
+ORIGINAL_LC="$LC_CTYPE"
+export LC_CTYPE="en_GB.utf8"
+#/usr/share/doc/pass/examples/dmenu/passmenu -l 20
+/usr/share/doc/pass/examples/dmenu/passmenu 
+export LC_CTYPE="$ORIGINAL_LC"

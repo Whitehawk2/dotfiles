@@ -1,0 +1,17 @@
+#!/bin/bash
+
+# From Alan Pope @ Canonical Snap team
+# added info by me :)
+# Cleans old revisions of snaps 
+# CLOSE ALL SNAPS BEFORE RUNNINS THIS SCRIPT
+
+usageNow=$(du -h /var/lib/snapd/snaps | grep G | cut -f 1)
+
+echo "Current usage of Snap cache is: "$usageNow
+echo "Cleaning old revisions of Snaps, please wait..."
+set -eu
+snap list --all | awk '/disabled/{print $1, $3}' |
+    while read snapname revision; do
+        snap remove "$snapname" --revision="$revision"
+    done
+echo "Done! now snap cache uses: "$usageNow

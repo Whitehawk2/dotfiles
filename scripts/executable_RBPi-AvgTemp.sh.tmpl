@@ -1,0 +1,15 @@
+#!/bin/bash
+
+# Lame script to average 5 temp readings
+# Requires RBPi with any Raspbian OS
+
+Temp1=$(/opt/vc/bin/vcgencmd measure_temp | cut -d= -f2 | cut -d . -f 1)
+Temp2=$(/opt/vc/bin/vcgencmd measure_temp | cut -d= -f2 | cut -d . -f 1)
+Temp3=$(/opt/vc/bin/vcgencmd measure_temp | cut -d= -f2 | cut -d . -f 1)
+Temp4=$(/opt/vc/bin/vcgencmd measure_temp | cut -d= -f2 | cut -d . -f 1)
+Temp5=$(/opt/vc/bin/vcgencmd measure_temp | cut -d= -f2 | cut -d . -f 1)
+TotTemp=$((Temp1+Temp2+Temp3+Temp4+Temp5))
+
+echo "+++++++++++++++++++++++++++++++++++++"
+echo "+     The average temp is "$((TotTemp / 5))"'C      +"
+echo "+++++++++++++++++++++++++++++++++++++"

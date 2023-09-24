@@ -1,0 +1,49 @@
+#!/usr/bin/env bash
+
+########################################################
+# psping - "pings" live processes by commands/execs    #
+#                                                      #
+# Ver 0.9; mostly working D:                           #
+# TODO: more elegant loop, either or, pgrep?           #
+#                                                      #
+#                                   2021 - Whitehawk2  #
+########################################################
+
+USAGE="Usage: $(basename "$0") [-c ###] [-t ###] [-u user-name] executable-name"
+
+while getopts ":c:t:u:" OPTION; do
+    case "$OPTION" in
+        c)  pingLimit=$OPTARG
+            ;;
+        t)  timeOut=$OPTARG
+            ;;
+        u)  userName=$OPTARG
+            ;;
+        \?) echo "Illegal option!"
+            echo "$USAGE"; exit 1;
+            ;;
+    esac
+done
+
+# Get rid of processed options
+shift $((OPTIND -1))
+
+[[ "$#" -lt 1 ]] && { echo "$USAGE"; exit 1; }
+
+# initializing counters to defaults, if not set
+[[ -z "$pingLimit" ]] && pingLimit=-1
+[[ -z "$timeOut" ]] && timeOut=1
+
+[[ -z "$userName" ]] && echo "pinging \`$1\` for any user" || echo "pinging \`$1\` for user $userName"
+
+for (( i=1; i!=pingLimit+1; i++ )); do
+    stat_now="$(pidstat -U --human | tr -s " " | awk '{print $3, $4, $11}' | grep "$1")"
+
+    if [[ -z "$userName" ]]; then
+        echo "$1: $(echo "$stat_now" | wc -l) instance(s)..."
+    else
+        echo "$1: $(echo "$stat_now" | grep -c "$userName") instance(s)..."
+    fi
+
+    sleep "$timeOut"
+done

@@ -1,0 +1,35 @@
+#!/bin/zsh
+# from https://cedaei.com/posts/ideas-from-my-dev-setup-always-tmux/
+# shellcheck disable=SC2207
+# Requires fzf
+
+# Doesn't let you press Ctrl-C
+function ctrl_c() {
+	echo -e "\renter nil to drop to normal prompt"
+}
+
+trap ctrl_c SIGINT
+
+IFS=$'\n'
+output=($(tmux list-sessions))
+k=1
+echo "Enter any number to attach to an existing session. Following is a preview: "
+for i in "${output[@]}"; do
+	echo "$k - $i"
+	((k++))
+done
+
+echo
+
+echo "Create a new session by entering a name for it"
+read -r input
+if [[ $input == "" ]]; then
+	tmux new-session
+elif [[ $input == 'nil' ]]; then
+	exit 1
+elif [[ $input =~ ^[0-9]+$ ]]; then
+    tmux attach -t "$(tmux list-sessions -F\#S | fzf)"
+else
+	tmux new-session -s "$input"
+fi
+exit 0
