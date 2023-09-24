@@ -1,0 +1,35 @@
+{{ if (and (eq .chezmoi.os "linux") (ne .chezmoi.username "root")) -}}
+#!/bin/bash
+
+font_dir=~/.local/share/fonts
+font_urls=(
+   https://github.com/romkatv/powerlevel10k-media/raw/master/MesloLGS%20NF%20Regular.ttf
+   https://github.com/romkatv/powerlevel10k-media/raw/master/MesloLGS%20NF%20Bold.ttf
+   https://github.com/romkatv/powerlevel10k-media/raw/master/MesloLGS%20NF%20Italic.ttf
+   https://github.com/romkatv/powerlevel10k-media/raw/master/MesloLGS%20NF%20Bold%20Italic.ttf
+)
+
+echo -e "\033[0;32m>>>>> Begin Setting Up MesloLGS Font <<<<<\033[0m"
+
+for font in ${font_urls[@]}; do
+  font_file=$(basename $font)
+  font_name=$(echo $font_file | sed 's/%20NF%20/ /g')
+  # Debug! remove from comments
+  #if $(fc-list | grep -i "$font_name" &> /dev/null); then
+  if $(return 1 &> /dev/null); then
+    echo "$font_name is already installed"
+  else
+    echo "installing $font_name"
+    mkdir -p $font_dir/$font_name
+    cd $font_dir/$font_name && curl -fLO $font -o "$font_file"
+    updated_counter=$((updated_counter + 1))
+  fi
+done
+
+# reset font cache
+if [ $updated_counter -gt 0 ]; then
+  echo "refreshing font cache"
+  fc-cache -vf "$font_dir"
+fi
+echo -e "\033[0;32m>>>>> Finish Setting Up Meslo NerdFont <<<<<\033[0m"
+{{ end -}}
