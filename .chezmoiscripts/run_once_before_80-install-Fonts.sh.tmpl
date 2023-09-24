@@ -2,6 +2,7 @@
 #!/bin/bash
 
 font_dir=~/.local/share/fonts
+[[ -d $font_dir ]] || mkdir -p $font_dir
 font_urls=(
    https://github.com/romkatv/powerlevel10k-media/raw/master/MesloLGS%20NF%20Regular.ttf
    https://github.com/romkatv/powerlevel10k-media/raw/master/MesloLGS%20NF%20Bold.ttf
@@ -10,6 +11,7 @@ font_urls=(
 )
 
 echo -e "\033[0;32m>>>>> Begin Setting Up MesloLGS Font <<<<<\033[0m"
+
 
 for font in ${font_urls[@]}; do
   font_file=$(basename $font)
