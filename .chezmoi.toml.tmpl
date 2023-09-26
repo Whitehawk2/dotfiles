@@ -10,7 +10,7 @@
 {{- $alacritty := promptBool "Alacritty?" -}}
 {{- $nalapt := false -}}
 {{- $old_deb := false -}}
-{{- if (and (eq .chezmoi.os "linux") (eq .chezmoi.osRelease.id "debian" "ubuntu")) -}}
+{{- if (and (eq .chezmoi.os "linux") (eq .chezmoi.osRelease.id "debian" "ubuntu" "pop")) -}}
 {{-   $nalapt = promptBool  "nalapt" -}}
 {{- end -}}
 
