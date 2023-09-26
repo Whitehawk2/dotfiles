@@ -16,7 +16,7 @@ echo -e "\033[0;32m>>>>> Begin Setting Up MesloLGS Font <<<<<\033[0m"
 for font in ${font_urls[@]}; do
   font_file=$(basename $font)
   font_name=$(echo $font_file | sed 's/%20/ /g')
-  if $(fc-list | grep -i "$font_name" &> /return 1 &> /dev/null); then
+  if $(fc-list | grep -i "$font_name" &> /dev/null); then
     echo "$font_name is already installed"
   else
     # TODO: The check fails (i.e # TODO: The check fails (i.e when too many CD areguments for files with spaces)"
