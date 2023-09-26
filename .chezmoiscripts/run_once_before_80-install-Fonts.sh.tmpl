@@ -26,7 +26,7 @@ for font in ${font_urls[@]}; do
 done
 
 # reset font cache
-if [ $updated_counter -gt 0 ]; then
+if [ "$updated_counter" -gt 0 ]; then
   pushd $font_dir > /dev/null
   # kill all %20
   for x in Meslo*; do mv -- "$x" "${x//%20/ }"; done
