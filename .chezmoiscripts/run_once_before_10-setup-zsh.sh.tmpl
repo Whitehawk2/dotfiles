@@ -29,7 +29,7 @@ fi
 {{   end -}}
 
 # Set zsh as default shell
-#chsh -s /bin/zsh
+chsh -s $(which zsh) {{ .chezmoi.username }}
 
 echo -e "\0033[0;32m>>>>> Finish Setting Up ZSH Shell <<<<<\033[0m"
 {{ end -}}
