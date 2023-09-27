@@ -20,4 +20,10 @@ if ! infocmp alacritty &> /dev/null; then
     curl -sSL https://raw.githubusercontent.com/alacritty/alacritty/master/extra/alacritty.info | tic -x -
 fi
 
+# Check if tmux-256colors terminfo exists, and if not, install it
+if ! infocmp tmux-256color &> /dev/null; then
+    echo -e "\0033[1;31m>>>>> tmux-256colors terminfo not found, installing it <<<<<\033[0m"
+    curl -sSL https://raw.githubusercontent.com/Whitehawk2/dotfiles/master/extra/tmux-256colors.info | tic -x -
+fi
+
 {{ end -}}
