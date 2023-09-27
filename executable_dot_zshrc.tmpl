@@ -138,7 +138,7 @@ alias k8='kubectl'
 alias K8S-YAML-LINTSERVER='docker run --name "yamlserver" --rm  -it quay.io/redhat-developer/yaml-language-server:latest'
 #alias gitC='git commit -am "$(w3m whatthecommit.com | head -n 1)"'
 
-{{ if eq .chezmoi.osRelease.id "debian" "ubuntu" -}}
+{{ if eq .chezmoi.osRelease.id "debian" "ubuntu" "pop" -}}
 alias cat='batcat'
 {{ else -}}
 alias cat='bat'
