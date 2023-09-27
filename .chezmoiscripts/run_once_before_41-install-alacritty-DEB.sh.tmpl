@@ -11,4 +11,13 @@ sudo apt install -y alacritty
 {{   else -}}
 apt install -y alacritty
 {{   end -}}
+
+# Check if alacritty terminfo exists, and if not, install it
+if ! infocmp alacritty &> /dev/null; then
+    echo -e "\0033[1;31m>>>>> Alacritty terminfo not found, installing it <<<<<\033[0m"
+
+    # Taken from https://github.com/alacritty/alacritty/issues/3962#issuecomment-862212371
+    curl -sSL https://raw.githubusercontent.com/alacritty/alacritty/master/extra/alacritty.info | tic -x -
+fi
+
 {{ end -}}
