@@ -1,4 +1,4 @@
-[".dot_cache/color-scripts"]
+[".temp/color-scripts"]
   url           = "https://gitlab.com/dwt1/shell-color-scripts"
   type          = "git-repo"
 [".oh-my-zsh"]
