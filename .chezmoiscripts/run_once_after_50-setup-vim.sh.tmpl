@@ -1,0 +1,13 @@
+#!/bin/bash
+
+echo -e "\0033[0;32m>>>>> Configuring Vim package manager & packages <<<<<\033[0m"
+if [ -d ~/.vim/bundle/Vundle.vim ]; then
+    vim +PluginInstall +qall
+else
+    git clone https://github.com/VundleVim/Vundle.vim.git ~/.vim/bundle/Vundle.vim
+    vim +PluginInstall +qall
+fi
+
+# TODO:Red: add ycm install and post install script, remove else clone if not needed anymore
+
+echo -e "\0033[0;32m>>>>> Done Configuring Vim package manager & packages <<<<<\033[0m"

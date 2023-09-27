@@ -22,3 +22,6 @@
 [".tmux/plugins/tpm"]
     type = "git-repo"
     url = "https://github.com/tmux-plugins/tpm"
+[".vim/bundle/Vundle.vim"]
+    type = "git-repo"
+    url = "https://github.com/VundleVim/Vundle.vim"
