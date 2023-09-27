@@ -1,0 +1,11 @@
+#!/bin/bash
+
+echo -e "\0033[0;32m>>>>> Setting up Colorscripts <<<<<\033[0m"
+
+{{ if ne .chezmoi.username "root" -}}
+cd {{ .chezmoi.homeDir }}/.cache/color-scripts && sudo make install
+{{ else -}}
+cd {{ .chezmoi.homeDir }}/.cache/color-scripts && make install
+{{ end -}}
+
+echo -e "\0033[0;32m>>>>> Done with Colorscripts <<<<<\033[0m"
