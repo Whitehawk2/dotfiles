@@ -1,0 +1,20 @@
+#!/bin/bash
+
+echo -e "\0033[0;32m>>>>> Begin installing docker <<<<<\033[0m"
+
+# Naive install of docker using the script from the docker website
+curl -fsSL https://get.docker.com | sudo bash -
+
+{{ if ne .chezmoi.username "root" -}}
+bash -c "sudo usermod -aG docker $USER"
+bash -c "sudo systemctl enable docker"
+bash -c "sudo systemctl start docker"
+{{ else -}}
+bash -c "usermod -aG docker $USER"
+bash -c "systemctl enable docker"
+bash -c "systemctl start docker"
+{{ end -}}
+
+echo -e "\0033[5;31m>>> Rootless mode not installed!\n>>> install manually, log off later <<<\033[0m"
+
+echo -e "\0033[0;32m>>>>> End installing docker <<<<<\033[0m"
