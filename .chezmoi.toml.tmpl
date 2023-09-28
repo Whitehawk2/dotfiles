@@ -12,7 +12,7 @@
 {{- $nalapt := false -}}
 {{- $old_deb := false -}}
 {{- if (and (eq .chezmoi.os "linux") (eq .chezmoi.osRelease.id "debian" "ubuntu" "pop")) -}}
-{{-   $nalapt = promptBool  "Would you like Nala, a friendly APT gui? -}}
+{{-   $nalapt = promptBool  "Would you like Nala, a friendly APT gui?" -}}
 {{- end -}}
 
 [data]
