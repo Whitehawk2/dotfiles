@@ -4,6 +4,7 @@ Trying to make a sensitive-info stripped, chezmoi fitting version
 of some of my dotfiles. let's see how that goes.
 
 [chezmoi](https://www.chezmoi.io/quick-start/)
+and run with `chezmoi init --apply whitehawk2`
 
 _Current Version_: 0.7.2
 
