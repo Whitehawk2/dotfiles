@@ -22,8 +22,24 @@ packages=(
   python3-pip
   yarnpkg
   tmux
+{{ if eq .chezmoi.osRelease.id "debian" -}}
+  vim-nox
+{{ else -}}
   vim
+{{ end -}}
+  cmake
+  build-essential
+  python3-dev
 )
+
+# Debian ships with vim-tiny, which is not what we want
+{{ if.eq .chezmoi.osRelease.id "debian" -}}
+{{   if ne .chezmoi.username "root" -}}
+sudo apt remove -y vim
+{{   else -}}
+apt remove -y vim
+{{   end -}}
+{{ end -}}
 
 for package in ${packages[@]}; do
   if ! $(dpkg-query -W -f='installed' $package &> /dev/null); then
