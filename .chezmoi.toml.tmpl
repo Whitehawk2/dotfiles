@@ -11,7 +11,7 @@
 {{- $brew := promptBool "Would you like to install Brew" -}}
 {{- $nalapt := false -}}
 {{- $old_deb := false -}}
-{{- if (and (eq .chezmoi.os "linux") (eq .chezmoi.osRelease.id "debian" "ubuntu")) -}}
+{{- if (and (eq .chezmoi.os "linux") (eq .chezmoi.osRelease.id "debian" "ubuntu" "pop")) -}}
 {{-   $nalapt = promptBool  "Would you like Nala, a friendly APT gui?" -}}
 {{- end -}}
 
