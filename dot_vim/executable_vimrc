@@ -37,6 +37,8 @@ Plugin 'juliosueiras/vim-terraform-completion'            " TF autocompleter
 Plugin 'aquasecurity/vim-trivy'              " trivy security
 Plugin 'github/copilot.vim'
  "Plugin 'Exafunction/codeium.vim'           \" AI code completion. vim9 only! 
+Plugin 'tpope/vim-dadbod'                   " DB explorer
+Plugin 'kristijanhusak/vim-dadbod-ui'       " DB explorer UI
 
 " All of your Plugins must be added before the following line
 call vundle#end()            " required
