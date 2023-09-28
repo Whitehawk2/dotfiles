@@ -1,0 +1,8 @@
+#!/bin/bash
+
+echo -e "\0033[0;32m>>>>> Setting up TPM and plugins <<<<<\033[0m"
+
+bash -c {{ .chezmoi.homeDir }}/.tmux/plugins/tpm/scripts/install_plugins.sh
+
+echo -e "\0033[0;32m>>>>> Done with TPM and plugins! <<<<<\033[0m"
+
