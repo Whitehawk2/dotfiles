@@ -27,7 +27,7 @@
     vault = {{ $vault }}
     alacritty = {{ $alacritty }}
     trippy = {{ $trippy }}
-    brew = {{ $brew }
+    brew = {{ $brew }}
 {{ if (and (eq .chezmoi.osRelease.id "debian" "ubuntu") (eq .chezmoi.osRelease.versionID "20.04" "20.10" "21.04" "21.10" "22.04" "22.10" "8" "9" "10")) -}}
     old_deb = true
 {{ else -}}
