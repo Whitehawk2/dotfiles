@@ -33,7 +33,7 @@ packages=(
 )
 
 # Debian ships with vim-tiny, which is not what we want
-{{ if.eq .chezmoi.osRelease.id "debian" -}}
+{{ if eq .chezmoi.osRelease.id "debian" -}}
 {{   if ne .chezmoi.username "root" -}}
 sudo apt remove -y vim
 {{   else -}}
