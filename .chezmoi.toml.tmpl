@@ -1,14 +1,14 @@
 {{- $email := promptStringOnce . "email" "Email address" -}}
-{{- $minikube := promptBool  "Do you need minikube?" -}}
-{{- $rss := promptBool  "Would you like an rss reader?" -}}
-{{- $AWS := promptBool  "Do you need the AWS cli?" -}}
-{{- $Terraform := promptBool  "Would you like to install Terraform?" -}}
-{{- $kube := promptBool  "Would you like to install kubectl related?" -}}
-{{- $vscode := promptBool  "Would you like to install VSCodium?" -}}
-{{- $vault := promptBool  "Would you like to install vault?" -}}
+{{- $minikube := promptBool  "Do you need minikube" -}}
+{{- $rss := promptBool  "Would you like an rss reader" -}}
+{{- $AWS := promptBool  "Do you need the AWS cli" -}}
+{{- $Terraform := promptBool  "Would you like to install Terraform" -}}
+{{- $kube := promptBool  "Would you like to install kubectl related" -}}
+{{- $vscode := promptBool  "Would you like to install VSCodium" -}}
+{{- $vault := promptBool  "Would you like to install vault" -}}
 {{- $trippy := promptBool  "Would you like to install trippy (tracert rust)" -}}
-{{- $alacritty := promptBool "Would you like to install Alacritty?" -}}
-{{- $brew := promptBool "Would you like to install Brew?" -}}
+{{- $alacritty := promptBool "Would you like to install Alacritty" -}}
+{{- $brew := promptBool "Would you like to install Brew" -}}
 {{- $nalapt := false -}}
 {{- $old_deb := false -}}
 {{- if (and (eq .chezmoi.os "linux") (eq .chezmoi.osRelease.id "debian" "ubuntu" "pop")) -}}
