@@ -86,7 +86,7 @@ COMPLETION_WAITING_DOTS="true"
 # Custom plugins may be added to $ZSH_CUSTOM/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
-plugins=(fzf-tab git catimg colored-man-pages command-not-found thefuck zsh-interactive-cd zsh-autosuggestions fast-syntax-highlighting docker docker-compose pip ubuntu ufw jsontools pass vagrant vagrant-prompt helm aws terraform gcloud brew vault pip)
+plugins=(fzf-tab git catimg colored-man-pages command-not-found zsh-interactive-cd zsh-autosuggestions fast-syntax-highlighting docker docker-compose pip ubuntu ufw jsontools pass helm aws terraform gcloud brew vault pip)
 
 source $ZSH/oh-my-zsh.sh
 
@@ -121,9 +121,6 @@ enable-fzf-tab
 
 # To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
 [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
-
-# on trial: not actually using this so much
-#eval $(thefuck --alias)
 
 # Exports
 export PATH="$HOME/.local/bin/:$HOME/go/bin/:/usr/local/lib:$PATH"
@@ -168,9 +165,11 @@ if [ "$(command -v dust)" ]; then
     alias du='dust -r'
 fi
 
+{{ if (and (eq .chezmoi.os "linux") ( .brew )) -}}
 ### Brew! ###
 eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"
 eval "$($(brew --prefix)/bin/brew shellenv)"
+{{ end -}}
 
 # Nala
 if [ "$(command -v nala)" ]; then
