@@ -11,13 +11,13 @@ if ! $(command -v nala); then
   sudo nala update
 {{     if ne .chezmoi.osRelease.id "pop" -}}
   sudo nala fetch
-{{     end -}
+{{     end -}}
 {{  else -}}
   apt install -y nala
   nala update
 {{     if ne .chezmoi.osRelease.id "pop" -}}
   nala fetch
-{{     end -}
+{{     end -}}
 {{  end -}}
 fi
 
