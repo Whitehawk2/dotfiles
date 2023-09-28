@@ -22,9 +22,7 @@ packages=(
   python3-pip
   yarnpkg
   tmux
-{{ if eq .chezmoi.osRelease.id "debian" -}}
-  vim-nox
-{{ else -}}
+{{ if ne .chezmoi.osRelease.id "debian" -}}
   vim
 {{ end -}}
   cmake
@@ -34,10 +32,13 @@ packages=(
 
 # Debian ships with vim-tiny, which is not what we want
 {{ if eq .chezmoi.osRelease.id "debian" -}}
+echo -e "\0033[1;34m>> Installing vim-nox <<\033[0m"
 {{   if ne .chezmoi.username "root" -}}
 sudo apt remove -y vim
+sudo apt install -y vim-nox
 {{   else -}}
 apt remove -y vim
+apt install -y vim-nox
 {{   end -}}
 {{ end -}}
 
