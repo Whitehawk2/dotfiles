@@ -13,7 +13,7 @@ apt install -y alacritty
 {{   end -}}
 {{ end -}}
 
-{{ if (and (.alacritty) (.use_nix) -}}
+{{ if (and (.alacritty) (.use_nix)) -}}
 
 # Assume nix and nix profiles work
 if [ ! "$(command -v alacritty)" ]; then
