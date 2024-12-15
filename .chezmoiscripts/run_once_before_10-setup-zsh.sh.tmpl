@@ -17,7 +17,7 @@ if $(dpkg-query -f'${Package}${Status}' -W zsh | grep -q 'not-installed'); then
 {{     end -}}
 fi
 
-{{   else if eq .chezmoi.osRelease.id "fedora" "suse" "nix" -}}
+{{   else if eq .chezmoi.osRelease.id "fedora" "nobara" "suse" "nix" -}}
 if [ ! "$(command -v zsh)"  ]; then
   echo "installing zsh"
 {{     if ne .chezmoi.username "root" -}}
