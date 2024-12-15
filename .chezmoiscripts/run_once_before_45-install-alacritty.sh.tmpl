@@ -1,6 +1,6 @@
-{{ if (and ( .alacritty) ( eq .chezmoi.osRelease.id "debian" "ubuntu" "pop"))  -}}
 #!/bin/bash
-
+{{ if (and ( .alacritty) ( eq .chezmoi.osRelease.id "debian" "ubuntu" "pop"))  -}}
+#TODO: fix
 {{ if .old_deb -}}
 echo -e "\0033[6;31m>>>>> WARNING <<<<<\033[0m"
 echo -e "\0033[1;31m>>>>> Old deb version, skipping install (for now) <<<<<\033[0m"
@@ -15,7 +15,6 @@ apt install -y alacritty
 
 {{ if (and (.alacritty) (.use_nix)) -}}
 
-# Assume nix and nix profiles work
 if [ ! "$(command -v alacritty)" ]; then
     nix profile install nixpkgs#alacritty
 
