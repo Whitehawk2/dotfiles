@@ -1,3 +1,4 @@
+{{ if .docker -}}
 #!/bin/bash
 
 set -efuo pipefail
@@ -20,3 +21,5 @@ bash -c "systemctl start docker"
 echo -e "\0033[5;31m>>> Rootless mode not installed!\n>>> install manually, log off later <<<\033[0m"
 
 echo -e "\0033[0;32m>>>>> End installing docker <<<<<\033[0m"
+
+{{ end -}}

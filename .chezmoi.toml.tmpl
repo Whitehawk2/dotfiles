@@ -9,8 +9,10 @@
 {{- $trippy := promptBool  "Would you like to install trippy (tracert rust)" -}}
 {{- $alacritty := promptBool "Would you like to install Alacritty" -}}
 {{- $brew := promptBool "Would you like to install Brew" -}}
+{{- $docker := promptBool "Would you like to install docker?" -}}
 {{- $nalapt := false -}}
 {{- $old_deb := false -}}
+{{- $use_nix := promptBool "Should I use nix package manager? (installing nix itself not yet implemented)" -}}
 {{- if (and (eq .chezmoi.os "linux") (eq .chezmoi.osRelease.id "debian" "ubuntu" "pop")) -}}
 {{-   $nalapt = promptBool  "Would you like Nala, a friendly APT gui?" -}}
 {{- end -}}
@@ -28,6 +30,9 @@
     alacritty = {{ $alacritty }}
     trippy = {{ $trippy }}
     brew = {{ $brew }}
+    use_nix = {{ $use_nix }}
+    docker = {{ $docker }}
+    dontdothis = false
 {{ if (and (eq .chezmoi.osRelease.id "debian" "ubuntu") (eq .chezmoi.osRelease.versionID "20.04" "20.10" "21.04" "21.10" "22.04" "22.10" "8" "9" "10")) -}}
     old_deb = true
 {{ else -}}

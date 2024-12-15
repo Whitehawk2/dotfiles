@@ -1,0 +1,44 @@
+{{ if (and (eq .chezmoi.os "linux") (eq .chezmoi.osRelease.id "fedora" "nobara" "suse" "nix")) -}}
+#!/bin/bash
+set -eufo pipefail
+
+echo -e "\0033[0;32m>>>>> Begin Setting Up misc Packages <<<<<\033[0m"
+
+# List of packages to install
+packages=(
+  python3-devel
+  bat
+  fzf
+  ripgrep
+  clang
+  sqlite-devel
+  fd-find
+  lldb
+  python3-pip
+  yarnpkg
+  tmux
+  cmake
+)
+
+for package in ${packages[@]}; do
+  if ! $(rpm -q $package &> /dev/null); then
+    echo -e "\0033[1;34m>> installing $package <<\033[0m"
+{{ if ne .chezmoi.username "root" -}}
+    sudo dnf install -y $package
+{{ else -}}
+    dnf install -y ${packages[@]}
+{{ end -}}
+  fi
+done
+
+{{ if ne .chezmoi.username "root" -}}
+    sudo dnf group install "C Development Tools and Libraries" "Development Tools"
+{{ else -}}
+    dnf group install -y "C Development Tools and Libraries" "Development Tools"
+{{ end -}}
+
+
+echo -e "\0033[0;32m>>>>> Finish Setting Packages <<<<<\033[0m"
+{{ end -}}
+
+

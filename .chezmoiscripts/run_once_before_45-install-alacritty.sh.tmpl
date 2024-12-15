@@ -11,6 +11,20 @@ sudo apt install -y alacritty
 {{   else -}}
 apt install -y alacritty
 {{   end -}}
+{{ end -}}
+
+{{ if (and (.alacritty) (.use_nix) -}}
+
+# Assume nix and nix profiles work
+if [ ! "$(command -v alacritty)" ]; then
+    nix profile install nixpkgs#alacritty
+
+fi 
+
+{{  end -}}
+{{ end -}}
+
+{{ if .alacritty -}}
 
 # Check if alacritty terminfo exists, and if not, install it
 if ! infocmp alacritty &> /dev/null; then
@@ -27,3 +41,4 @@ if ! infocmp tmux-256color &> /dev/null; then
 fi
 
 {{ end -}}
+
