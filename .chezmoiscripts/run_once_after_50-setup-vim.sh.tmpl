@@ -10,4 +10,16 @@ fi
 
 # TODO:Red: add ycm install and post install script, remove else clone if not needed anymore
 
+#{{ if eq .OS "Darwin" }}
+#    echo -e "\0033[0;32m>>>>> Installing YCM <<<<<\033[0m"
+#    brew install cmake
+#    cd ~/.vim/bundle/YouCompleteMe
+#    ./install.py --clang-completer
+#{{ else if (and (eq .OS "Linux") (eq .chezmoi.osRelease.id "debian" "ubuntu" "pop") }
+#    echo -e "\0033[0;32m>>>>> Installing YCM <<<<<\033[0m"
+#    sudo apt-get install build-essential cmake
+#    cd ~/.vim/bundle/YouCompleteMe
+#    ./install.py 
+#{{ end }
+
 echo -e "\0033[0;32m>>>>> Done Configuring Vim package manager & packages <<<<<\033[0m"
