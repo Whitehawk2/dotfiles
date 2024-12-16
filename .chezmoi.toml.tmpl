@@ -1,6 +1,6 @@
 {{- $email := promptStringOnce . "email" "Email address" -}}
-{{- $nvim := promptStringOnce "install nvim?" -}}
-{{- $ayamir := promptStringOnce "Would you like to use ayamir config for nvim? this implicitly installs nvim" -}}
+{{- $nvim := promptBool "install nvim?" -}}
+{{- $ayamir := promptBool "Would you like to use ayamir config for nvim? this implicitly installs nvim" -}}
 {{- $minikube := promptBool  "Do you need minikube" -}}
 {{- $rss := promptBool  "Would you like an rss reader" -}}
 {{- $AWS := promptBool  "Do you need the AWS cli" -}}
