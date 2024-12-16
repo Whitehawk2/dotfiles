@@ -13,6 +13,14 @@ if ! command -v cargo &> /dev/null; then
   fi
 fi
 
+echo -e "\0033[0;25m>>>> Installing cargo-update <<<<\033[0m"]
+{{  if ne .chezmoi.username "root" -}}
+sudo dnf install -y pkgconf openssl-devel
+{{ else -}}
+dnf install -y pkgconf openssl-devel
+{{- end }}
+cargo install cargo-update
+
 echo -e "\0033[0;25m>>>> Installing Eza <<<<\033[0m"]
 cargo install eza
 
@@ -23,7 +31,7 @@ echo -e "\0033[0;25m>>>> Installing du-dust <<<<\033[0m"]
 cargo install du-dust
 
 echo -e "\0033[0;25m>>>> Installing gitui <<<<\033[0m"]
-cargo install gitui
+cargo install gitui --locked
 
 echo -e "\0033[0;25m>>>> Installing TealDeer (TLDR) <<<<\033[0m"]
 cargo install tealdeer
@@ -38,13 +46,6 @@ setcap CAP_NET_RAW+p $(which trip)
 {{   end -}}
 {{ end -}}
 
-echo -e "\0033[0;25m>>>> Installing cargo-update <<<<\033[0m"]
-{{  if ne .chezmoi.username "root" -}}
-sudo dnf install -y pkgconf openssl-devel
-{{ else -}}
-dnf install -y pkgconf openssl-devel
-{{- end }}
-cargo install cargo-update
 
 echo -e "\0033[0;32m>>>>> Finish Setting Up Rust tools! <<<<<\033[0m"
 {{ end -}}

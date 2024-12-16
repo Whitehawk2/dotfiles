@@ -1,0 +1,14 @@
+{{ if (and ( .ayamir) ( eq .chezmoi.osRelease.id "fedora rhel nobara")) -}}
+#!/bin/bash
+
+{{	if ne .use_nix -}}
+	echo -e "\0033[1;31m>>>>> Error! nvim is moving faster than repos, so currently only nix install is supported. <<<<<\033[0m"
+	return 0
+{{	end -}}
+
+echo -e "\0033[0;32m>>>>> Installing nvim from nix-pkgs <<<<<\033[0m"
+echo -e "\0033[0;32m>>>>> Make sure flakes and nix commands are turned on! <<<<<\033[0m"
+read -p "Press [Enter] to continue..."
+nix profile install nixpkgs#neovim
+
+{{ end -}}

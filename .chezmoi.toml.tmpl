@@ -1,4 +1,6 @@
 {{- $email := promptStringOnce . "email" "Email address" -}}
+{{- $nvim := promptStringOnce "install nvim?" -}}
+{{- $ayamir := promptStringOnce "Would you like to use ayamir config for nvim? this implicitly installs nvim" -}}
 {{- $minikube := promptBool  "Do you need minikube" -}}
 {{- $rss := promptBool  "Would you like an rss reader" -}}
 {{- $AWS := promptBool  "Do you need the AWS cli" -}}
@@ -33,6 +35,8 @@
     use_nix = {{ $use_nix }}
     docker = {{ $docker }}
     dontdothis = false
+	nvim = {{ $nvim }}
+	ayamir = {{ $ayamir }}
 {{ if (and (eq .chezmoi.osRelease.id "debian" "ubuntu") (eq .chezmoi.osRelease.versionID "20.04" "20.10" "21.04" "21.10" "22.04" "22.10" "8" "9" "10")) -}}
     old_deb = true
 {{ else -}}
