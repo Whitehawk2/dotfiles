@@ -15,10 +15,10 @@ if ! $(command -v rustup &>/dev/null); then
 {{ else if eq .chezmoi.osRelease.id "fedora" "nobara" "suse" -}}
 {{  if ne .chezmoi.username "root" -}}
   sudo dnf install -y curl
-  sudo dnf groupinstall -y "Development Tools" "C Development Tools and Libraries"
+  sudo dnf group install -y "Development Tools" "C Development Tools and Libraries"
 {{  else -}}
   dnf install -y curl
-  dnf groupinstall -y "Development Tools" "C Development Tools and Libraries"
+  dnf group install -y "Development Tools" "C Development Tools and Libraries"
 {{  end -}}
   curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh
 {{ end -}}
